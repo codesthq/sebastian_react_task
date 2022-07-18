@@ -1,6 +1,6 @@
 const addSubBreed = (subBreed: [], breed: string) => {
   return subBreed.map((item: any) => {
-    return `${item} ${breed}`;
+    return `${breed} ${item}`;
   });
 };
 

@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+import { Button, Flex, Text } from '@chakra-ui/react';
 import { getDogBreeds } from '../api/getDogBreeds';
 import { useQuery } from 'react-query';
 import { transformData } from '../utils/transformData';
@@ -12,9 +13,21 @@ const Home: NextPage<Props> = (props) => {
 
   const breeds = transformData(data);
 
-  console.log(breeds);
+  const onBreedClick = (breed: string) => {
+    console.log(breed);
+  };
 
-  return <div></div>;
+  return (
+    <Flex wrap="wrap" p={8}>
+      {breeds.map((breed) => (
+        <Button mr={4} mb={4} key={breed}>
+          <Text casing={'capitalize'} onClick={() => onBreedClick(breed)}>
+            {breed}
+          </Text>
+        </Button>
+      ))}
+    </Flex>
+  );
 };
 
 export default Home;
