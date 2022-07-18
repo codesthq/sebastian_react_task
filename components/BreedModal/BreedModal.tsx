@@ -24,8 +24,8 @@ type Props = {
 const BreedModal = ({ isOpen, onClose, breed }: Props) => {
   const { isLoading, data, refetch } = useQuery(['breedRandomImage', breed], () => getRandomImageByBreed(breed));
 
-  const onButtonClick = () => {
-    refetch();
+  const onButtonClick = async () => {
+    await refetch();
   };
 
   return (
@@ -43,7 +43,7 @@ const BreedModal = ({ isOpen, onClose, breed }: Props) => {
                 <Spinner />
               </Flex>
             ) : (
-              <Image objectFit={'contain'} src={data as string} width={500} height={400} />
+              <Image alt={breed} objectFit={'contain'} src={data as string} width={500} height={400} />
             )}
             <Button onClick={onButtonClick} mt={2}>
               Get another photo
