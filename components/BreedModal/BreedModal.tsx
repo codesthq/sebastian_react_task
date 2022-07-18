@@ -22,7 +22,7 @@ type Props = {
 };
 
 const BreedModal = ({ isOpen, onClose, breed }: Props) => {
-  const { isFetching, data, refetch } = useQuery(['breedRandomImage', breed], () => getRandomImageByBreed(breed));
+  const { isLoading, data, refetch } = useQuery(['breedRandomImage', breed], () => getRandomImageByBreed(breed));
 
   const onButtonClick = () => {
     refetch();
@@ -38,7 +38,7 @@ const BreedModal = ({ isOpen, onClose, breed }: Props) => {
         <ModalCloseButton />
         <ModalBody>
           <Flex direction={'column'}>
-            {isFetching ? (
+            {isLoading ? (
               <Flex w="full" justify={'center'} h={320}>
                 <Spinner />
               </Flex>
