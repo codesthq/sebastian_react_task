@@ -22,7 +22,9 @@ type Props = {
 };
 
 const BreedModal = ({ isOpen, onClose, breed }: Props) => {
-  const { isLoading, data, refetch } = useQuery(['breedRandomImage', breed], () => getRandomImageByBreed(breed));
+  const { isLoading, data, refetch } = useQuery(['breedRandomImage', breed], () => getRandomImageByBreed(breed), {
+    enabled: breed !== '',
+  });
 
   const onButtonClick = async () => {
     await refetch();
